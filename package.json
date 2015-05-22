@@ -1,0 +1,19 @@
+{
+  "name": "gulp-git-deploy",
+  "version": "1.0.0",
+  "description": "Run deploy tasks with gulp if there are any changes on the Git repo.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:agualbbus/gulp-git-deploy.git"
+  },
+  "author": "Agualbbus",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/agualbbus/gulp-git-deploy/issues"
+  },
+  "homepage": "https://github.com/agualbbus/gulp-git-deploy"
+}
