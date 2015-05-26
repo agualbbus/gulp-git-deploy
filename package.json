@@ -17,7 +17,14 @@
   },
   "homepage": "https://github.com/agualbbus/gulp-git-deploy",
   "dependencies": {
-    "gulp-git": "^1.2.4",
+    "any-shell-escape": "^0.1.1",
+    "exec-chainable": "0.0.3",
     "gulp-util": "^3.0.1"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*",
+    "jshint": "^2.5.6",
+    "rimraf": "*"
   }
 }

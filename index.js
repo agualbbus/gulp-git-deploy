@@ -1,36 +1,74 @@
-// through2 is a thin wrapper around node transform streams
-var git = require('gulp-git');
 var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
+var exec = require('exec-chainable');
+var head={};
 
 // Consts
 const PLUGIN_NAME = 'gulp-git-deploy';
 
+function fetchAndCompare(opt){
+    //fetch
+  return exec('git fetch '+opt.remote+' '+opt.name)
+
+        //get local head
+        .then(function (stdout){
+          return exec('git rev-list '+opt.name+' -n 1')
+        })
+
+        //process local head and return remote head
+        .then(function(stdout){
+            head.local=stdout;
+            console.log('local head is',head.local);
+
+            return exec('git rev-list origin/'+opt.name+' -n 1');
+        })
+        .then(function(stdout){
+            head.origin=stdout;
+            return console.log('remote head is',head.origin);
+        });
+}
 
 
-function gitDeploy(opt, tasks){
-  
-  opt = opt || {};
+
+
+function merge(){
+    if( head.origin !== head.local ){
+      return exec('git merge origin/master ')
+      .then(function(stdout){
+        console.log(stdout);
+      });
+    }
+    else{
+      return console.log('nothing to do');
+    }
+}
+
+
+
+
+function gitDeploy(opt, cb){
+
+  if(!cb && typeof opt === 'function'){
+    cb=opt;
+    opt={};
+  }
+
+  opt = ( opt && typeof opt ==='object' ? opt : {} );
+  cb = ( cb && typeof cb === 'function' ? cb : function(){} );
+
 
   opt = {
-    by: opt.by || 'branch',
     remote: opt.remote || 'origin',
     name: opt.name || 'master'
   }
 
-  //first fetch all
 
-  git.fetch(opt.remote, '', {arg: '--all'}, function(err){
-    if (err) throw new PluginError(PLUGIN_NAME, err);
+  return fetchAndCompare(opt).then(function(){
+    return merge();
   })
-
-
-  if(opt.by == 'branch' ){
-
-
-
-  }
-
+  .done(function(){
+    return cb();
+  });
 
 
 }
