@@ -12,7 +12,7 @@ const PLUGIN_NAME = 'gulp-git-deploy';
 
 function resetHead(opt){
     if(opt.reset === true){
-      return exec('git reset '+opt.name+' --hard ');
+      return exec('git reset '+opt.name+' --hard ')
     }
    return exec(' ');
 }
@@ -44,13 +44,19 @@ function fetchAndCompare(opt){
 
 
 
-function merge(){
+function merge(opt){
     if( head.origin !== head.local ){
-      return exec('git merge origin/master ')
+
+      return resetHead(opt)
+
+      .then(function(){
+        return exec('git merge '+opt.remote+'/'+opt.name)
+      })
       .then(function(stdout){
         merged = true;
         console.log(stdout);
       });
+
     }
     else{
       return console.log('nothing to do');
@@ -74,18 +80,14 @@ function gitDeploy(opt, cb){
   opt = {
     remote: opt.remote || 'origin',
     name: opt.name || 'master',
-    reset: opt.reset || 'true'
+    reset: opt.reset || true
   }
 
 
   return fetchAndCompare(opt)
 
   .then(function(){
-    return resetHead(opt);
-  })
-
-  .then(function(){
-    return merge();
+    return merge(opt);
   })
 
   .done(function(){
