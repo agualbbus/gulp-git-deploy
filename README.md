@@ -1,17 +1,17 @@
 # gulp-git-deploy
 Run deploy tasks with gulp if there are any changes on the Git repo.
- 
+
 ## Usage
 ### Install
     npm install gulp-git-deploy --save
- 
- 
-## Example 
+
+
+## Example
 ```javascript
 var gulp = require('gulp');
 var gitDeploy = require('gulp-git-deploy');
 
- 
+
 gulp.task('build', function(){
  //your build stuff.
 })
@@ -25,10 +25,11 @@ gulp.task('deploy',function(){
 
 })
 
- 
+
 ```
 
 ## Options
+
 ### remote
 
 Set the git remote
@@ -43,4 +44,11 @@ Set the branch name
 Type:`string`
 
 Default:`'master'`
+
+### reset
+Reset head
+
+Type:`boolean`
+
+Default:`true`
 
