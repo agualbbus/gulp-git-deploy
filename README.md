@@ -30,6 +30,7 @@ gulp.task('deploy',function(){
 
 ##Options
 ###remote
+
 Set the git remote
 
 Type:`string`
