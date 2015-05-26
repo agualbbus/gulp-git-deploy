@@ -34,21 +34,21 @@ gulp.task('deploy',function(){
 
 Set the git remote
 
-Type:`string`
+Type: `string`
 
 Default:`'origin'`
 
 ### name
 Set the branch name
 
-Type:`string`
+Type: `string`
 
-Default:`'master'`
+Default: `'master'`
 
 ### reset
-Reset head
+Reset head position(discards any change to your branch).
 
-Type:`boolean`
+Type: `boolean`
 
-Default:`true`
+Default: `true`
 
