@@ -1,6 +1,6 @@
 {
   "name": "gulp-git-deploy",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Run deploy tasks with gulp if there are any changes on the Git repo.",
   "main": "index.js",
   "scripts": {
