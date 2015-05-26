@@ -2,6 +2,7 @@ var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
 var exec = require('exec-chainable');
 var head={};
+var merged=false;
 
 // Consts
 const PLUGIN_NAME = 'gulp-git-deploy';
@@ -35,6 +36,7 @@ function merge(){
     if( head.origin !== head.local ){
       return exec('git merge origin/master ')
       .then(function(stdout){
+        merged = true;
         console.log(stdout);
       });
     }
@@ -67,7 +69,13 @@ function gitDeploy(opt, cb){
     return merge();
   })
   .done(function(){
-    return cb();
+    if( merged === true ){
+      return cb();
+    }
+    else{
+     return false;
+    }
+
   });
 
 
