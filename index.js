@@ -22,10 +22,12 @@ function resetHead(opt){
 
 function fetchAndCompare(opt){
     //fetch
+  var cmd='git fetch '+opt.remote+' '+opt.name;
   return exec('git fetch '+opt.remote+' '+opt.name)
 
         //get local head
         .then(function (stdout){
+
           return exec('git show -s --format=%cD '+opt.name)
         })
 
