@@ -118,4 +118,3 @@ function gitDeploy(opt, cb){
 }
 
 module.exports = gitDeploy;
-
