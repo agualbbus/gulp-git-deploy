@@ -1,8 +1,10 @@
 var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
 var exec = require('exec-chainable');
+var escape = require('any-shell-escape')
 var head = {};
 var merged = false;
+//var Q=require('q');
 
 
 // Consts
@@ -22,21 +24,27 @@ function resetHead(opt){
 
 function fetchAndCompare(opt){
     //fetch
-  var cmd='git fetch '+opt.remote+' '+opt.name;
-  return exec('git fetch '+opt.remote+' '+opt.name)
+  var cmd='git fetch ' + escape([opt.remote, opt.name]);
+  console.log(cmd);
+
+  return exec(cmd)
 
         //get local head
         .then(function (stdout){
 
+          console.log(stdout);
           return exec('git show -s --format=%cD '+opt.name)
+
         })
 
         //process local head and return remote head
         .then(function(stdout){
+
             head.local=new Date( stdout ).toUTCString();
             console.log('local head is',head.local);
-
             return exec('git show -s --format=%cD '+opt.remote+'/'+opt.name);
+
+
         })
         .then(function(stdout){
             head.origin=new Date( stdout ).toUTCString();
