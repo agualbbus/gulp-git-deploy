@@ -26,5 +26,15 @@
     "should": "*",
     "jshint": "^2.5.6",
     "rimraf": "*"
-  }
+  },
+  "keywords": [
+    "gulp",
+    "git",
+    "deploy",
+    "gitdeploy",
+    "gulpgit",
+    "gulpplugin",
+    "gulp-plugin"
+
+  ]
 }
