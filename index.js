@@ -71,7 +71,7 @@ function merge(opt){
 
 
 function gitDeploy(opt, cb){
-
+ console.log(opt)
   if(!cb && typeof opt === 'function'){
     cb=opt;
     opt={};
@@ -84,9 +84,9 @@ function gitDeploy(opt, cb){
   opt = {
     remote: opt.remote || 'origin',
     name: opt.name || 'master',
-    reset: opt.reset || true
+    reset: ( typeof opt.reset === 'boolean' ? opt.reset : true )
   }
-
+  console.log(opt)
 
   return fetchAndCompare(opt)
 
