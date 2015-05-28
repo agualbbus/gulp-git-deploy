@@ -31,13 +31,13 @@ function fetchAndCompare(opt){
 
         //process local head and return remote head
         .then(function(stdout){
-            head.local=new Date( stdout );
+            head.local=new Date( stdout ).toUTCString();
             console.log('local head is',head.local);
 
             return exec('git show -s --format=%cD '+opt.remote+'/'+opt.name);
         })
         .then(function(stdout){
-            head.origin=new Date( stdout );
+            head.origin=new Date( stdout ).toUTCString();
             return console.log('remote head is',head.origin);
         });
 }
@@ -71,7 +71,7 @@ function merge(opt){
 
 
 function gitDeploy(opt, cb){
- console.log(opt)
+
   if(!cb && typeof opt === 'function'){
     cb=opt;
     opt={};
@@ -86,7 +86,7 @@ function gitDeploy(opt, cb){
     name: opt.name || 'master',
     reset: ( typeof opt.reset === 'boolean' ? opt.reset : true )
   }
-  console.log(opt)
+
 
   return fetchAndCompare(opt)
 
