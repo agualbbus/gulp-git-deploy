@@ -1,9 +1,8 @@
 var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
 var exec = require('exec-chainable');
-var head = {};
-var merged = false;
-
+var head={};
+var merged=false;
 
 // Consts
 const PLUGIN_NAME = 'gulp-git-deploy';
@@ -26,18 +25,18 @@ function fetchAndCompare(opt){
 
         //get local head
         .then(function (stdout){
-          return exec('git show -s --format=%cD '+opt.name)
+          return exec('git rev-list '+opt.name+' -n 1')
         })
 
         //process local head and return remote head
         .then(function(stdout){
-            head.local=new Date( stdout );
+            head.local=stdout;
             console.log('local head is',head.local);
 
-            return exec('git show -s --format=%cD '+opt.remote+'/'+opt.name);
+            return exec('git rev-list origin/'+opt.name+' -n 1');
         })
         .then(function(stdout){
-            head.origin=new Date( stdout );
+            head.origin=stdout;
             return console.log('remote head is',head.origin);
         });
 }
@@ -45,11 +44,8 @@ function fetchAndCompare(opt){
 
 
 
-
-
-
 function merge(opt){
-    if( head.origin > head.local ){
+    if( head.origin !== head.local ){
 
       return resetHead(opt)
 
