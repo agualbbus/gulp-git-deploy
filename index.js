@@ -24,7 +24,7 @@ function resetHead(opt){
 
 function fetchAndCompare(opt){
     //fetch
-  var cmd='git fetch ' + escape([opt.remote, opt.name]);
+  var cmd='git fetch --all ';
   console.log(cmd);
 
   return exec(cmd)
