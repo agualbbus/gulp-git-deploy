@@ -22,11 +22,9 @@ function resetHead(opt){
 
 
 
-function fetchAndCompare(opt){
+function fetchAndGetHeads(opt){
     //fetch
   var cmd='git fetch --all ';
-  console.log(cmd);
-
   return exec(cmd)
 
         //get local head
@@ -98,7 +96,7 @@ function gitDeploy(opt, cb){
   }
 
 
-  return fetchAndCompare(opt)
+  return fetchAndGetHeads(opt)
 
   .then(function(){
     return merge(opt);
