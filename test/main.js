@@ -58,8 +58,10 @@ describe('gulp-git-deploy', function(){
     exec('git reset --hard')
     .then(function(){
       return exec('git checkout '+ currentBranch)
-      done();
     })
+    .then(function(){
+      done();
+    });
   });
 
 
