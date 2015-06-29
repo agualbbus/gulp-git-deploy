@@ -5,7 +5,7 @@
 var fs = require('fs');
 var rimraf = require('rimraf');
 var should = require('should');
-var exec = require('child_process').exec;
+var exec = require('exec-chainable');
 var gutil = require('gulp-util');
 var git = require('../');
 
@@ -13,18 +13,21 @@ var git = require('../');
 describe('gulp-git', function(){
   var repo = 'https://github.com/agualbbus/gulp-git-deploy-test.git';
 
-//  beforeEach(function(done){
-//
-//    exec('git clone '+repo, function(err){
-//      if (err) return done(err);
-//      done();
-//    })
-//  });
+  before(function(done){
+    exec('git checkout -b testing-branch ')
+    .then(function(stdout){
+      done();
+    });
+
+
+  });
+
+  after(function(){
+    exec('git branch -d testing-branch ')
+  });
+
 
 });
-
-
-
 
 
 
