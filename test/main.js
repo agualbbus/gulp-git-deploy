@@ -7,14 +7,14 @@ var rimraf = require('rimraf');
 var should = require('should');
 var exec = require('exec-chainable');
 var gutil = require('gulp-util');
-var git = require('../');
+var GGdeploy = require('../');
 
 
 describe('gulp-git', function(){
   var repo = 'https://github.com/agualbbus/gulp-git-deploy-test.git';
 
   before(function(done){
-    exec('git checkout -b testing-branch ')
+    exec('git checkout testing-branch ')
     .then(function(stdout){
       done();
     });
@@ -22,8 +22,29 @@ describe('gulp-git', function(){
 
   });
 
+  it('should compare branch/origin with branch/local and be the same', function(done){
+    var rev = {};
+    exec('git rev-list HEAD -1')
+    .then(function(stdout){
+      rev.a = stdout;
+      return GGdeploy({
+        name: 'testing-branch',
+        reset: false
+      });
+    })
+    .then(function(){
+      return exec('git rev-list HEAD -1');
+    })
+    .then(function(stdout){
+      rev.b = stdout;
+      rev.a.should.equal(rev.b);
+      done();
+    });
+  });
+
+
   after(function(){
-    exec('git branch -d testing-branch ')
+    //exec('git branch -d testing-branch ')
   });
 
 
