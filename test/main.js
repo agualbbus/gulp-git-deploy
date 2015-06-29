@@ -10,17 +10,12 @@ var gutil = require('gulp-util');
 var GGdeploy = require('../');
 
 
-describe('gulp-git', function(){
+describe('gulp-git-deploy', function(){
   var repo = 'https://github.com/agualbbus/gulp-git-deploy-test.git';
-  var currentBranch = exec('git rev-parse --abbrev-ref HEAD').then(function(stdout){
-        return stdout;
-      });
-
 
   before(function(done){
     exec('git checkout testing-branch ')
     .then(function(stdout){
-      console.log(stdout);
       done();
     });
 
@@ -49,7 +44,7 @@ describe('gulp-git', function(){
 
 
   after(function(){
-    exec('git checkout ' + currentBranch);
+    //exec('git branch -d testing-branch ')
   });
 
 
