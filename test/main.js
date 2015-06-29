@@ -12,15 +12,22 @@ var GGdeploy = require('../');
 
 describe('gulp-git-deploy', function(){
   var repo = 'https://github.com/agualbbus/gulp-git-deploy-test.git';
+  var currentBranch;
 
   before(function(done){
-    exec('git checkout testing-branch ')
+    exec('git rev-parse --abbrev-ref HEAD')
+    .then(function(stdout){
+      currentBranch = stdout;
+      return exec('git checkout testing-branch ')
+    })
     .then(function(stdout){
       done();
     });
 
-
   });
+
+
+
 
   it('should compare branch/origin with branch/local and be the same', function(done){
     var rev = {};
@@ -43,8 +50,16 @@ describe('gulp-git-deploy', function(){
   });
 
 
-  after(function(){
-    //exec('git branch -d testing-branch ')
+
+
+
+
+  after(function(done){
+    exec('git reset --hard')
+    .then(function(){
+      return exec('git checkout '+ currentBranch)
+      done();
+    })
   });
 
 
