@@ -1,21 +1,21 @@
 var gutil = require('gulp-util');
 var PluginError = gutil.PluginError;
 var exec = require('exec-chainable');
-var escape = require('any-shell-escape')
+var escape = require('any-shell-escape');
 var head = {};
 var merged = false;
 //var Q=require('q');
 
 
 // Consts
-const PLUGIN_NAME = 'gulp-git-deploy';
+var PLUGIN_NAME = 'gulp-git-deploy';
 
 
 
 
 function resetHead(opt){
     if(opt.reset === true){
-      return exec('git reset '+opt.name+' --hard ')
+      return exec('git reset '+opt.name+' --hard ');
     }
    return exec(' ');
 }
@@ -31,21 +31,21 @@ function fetchAndGetHeads(opt){
         .then(function (stdout){
 
           console.log(stdout);
-          return exec('git show -s --format=%cD '+opt.name)
+          return exec('git show -s --format=%cD '+opt.name);
 
         })
 
         //process local head and return remote head
         .then(function(stdout){
 
-            head.local=new Date( stdout ).toUTCString();
+            head.local=new Date ( new Date( stdout ).toUTCString() );
             console.log('local head is',head.local);
             return exec('git show -s --format=%cD '+opt.remote+'/'+opt.name);
 
 
         })
         .then(function(stdout){
-            head.origin=new Date( stdout ).toUTCString();
+            head.origin= new Date ( new Date( stdout ).toUTCString() ) ;
             return console.log('remote head is',head.origin);
         });
 }
@@ -62,7 +62,7 @@ function merge(opt){
       return resetHead(opt)
 
       .then(function(){
-        return exec('git merge '+opt.remote+'/'+opt.name)
+        return exec('git merge '+opt.remote+'/'+opt.name);
       })
       .then(function(stdout){
         merged = true;
@@ -93,7 +93,7 @@ function gitDeploy(opt, cb){
     remote: opt.remote || 'origin',
     name: opt.name || 'master',
     reset: ( typeof opt.reset === 'boolean' ? opt.reset : true )
-  }
+  };
 
 
   return fetchAndGetHeads(opt)
