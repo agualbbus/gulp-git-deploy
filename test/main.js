@@ -71,8 +71,8 @@ describe('gulp-git-deploy', function(){
       return exec('git rev-list HEAD -1');
     })
     .then(function(stdout){
-      console.log(stdout);
       rev.b = stdout;
+      console.log(rev.a, ' ', rev.b);
       rev.a.should.not.eql(rev.b);
       done();
     });
