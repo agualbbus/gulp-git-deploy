@@ -71,8 +71,8 @@ describe('gulp-git-deploy', function(){
       return exec('git rev-list HEAD -1');
     })
     .then(function(stdout){
-      console.log(stdout);
       rev.b = stdout;
+      console.log(rev.a, ' ', rev.b);
       rev.a.should.not.eql(rev.b);
       done();
     });
@@ -82,7 +82,11 @@ describe('gulp-git-deploy', function(){
   it('should compare branch/origin with branch/local and if different should merge then should apply callback', function(done){
     var rev = {};
     var cbText = 'I´m a callback';
-    var cb = function(){return  cbText};
+    var cb ={
+      result: null,
+      func : function(){return  cbText};
+    };
+
 
     exec('git reset HEAD~1 --hard')
     .then(function(stdout){
@@ -94,16 +98,17 @@ describe('gulp-git-deploy', function(){
       return GGdeploy({
         name: 'testing-branch',
         reset: false,
-      }, cb);
+      }, cb.func);
     })
     .then(function(stdout){
-      console.log(stdout);
+      cb.result = stdout;
       return exec('git rev-list HEAD -1');
     })
     .then(function(stdout){
-      console.log(stdout);
       rev.b = stdout;
+      console.log(rev.a, ' ', rev.b);
       rev.a.should.not.eql(rev.b);
+      cb.result.should.eql(cbText);
       done();
     });
   });
