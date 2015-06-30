@@ -21,6 +21,7 @@ describe('gulp-git-deploy', function(){
       return exec('git checkout testing-branch ');
     })
     .then(function(stdout){
+      console.log(stdout);
       done();
     });
 
