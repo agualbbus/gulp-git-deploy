@@ -1,8 +1,9 @@
+
 # gulp-git-deploy
+
 CirlceCI:[![Circle CI](https://circleci.com/gh/agualbbus/gulp-git-deploy/tree/master.svg?style=shield)](https://circleci.com/gh/agualbbus/gulp-git-deploy/tree/master)
 DroneIO:[![Build Status](https://drone.io/github.com/agualbbus/gulp-git-deploy/status.png)](https://drone.io/github.com/agualbbus/gulp-git-deploy/latest)
 BadgeFuryIO:[![npm version](https://badge.fury.io/js/gulp-git-deploy.svg)](http://badge.fury.io/js/gulp-git-deploy)
-
 
 <table>
 <tr>
@@ -23,11 +24,13 @@ BadgeFuryIO:[![npm version](https://badge.fury.io/js/gulp-git-deploy.svg)](http:
 </table>
 
 ## Usage
+
 ### Install
+
     npm install gulp-git-deploy --save
 
-
 ## Example
+
 ```javascript
 var gulp = require('gulp');
 var gitDeploy = require('gulp-git-deploy');
@@ -60,6 +63,7 @@ Type: `string`
 Default:`'origin'`
 
 ### name
+
 Set the branch name
 
 Type: `string`
@@ -67,9 +71,9 @@ Type: `string`
 Default: `'master'`
 
 ### reset
+
 Reset head position(discards any change to your branch).
 
 Type: `boolean`
 
 Default: `true`
-
