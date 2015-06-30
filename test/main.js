@@ -44,7 +44,7 @@ describe('gulp-git-deploy', function(){
     })
     .then(function(stdout){
       rev.b = stdout;
-      rev.a.should.equal(rev.b);
+      rev.a.should.eql(rev.b);
       done();
     });
   });
@@ -69,7 +69,7 @@ describe('gulp-git-deploy', function(){
     })
     .then(function(stdout){
       rev.b = stdout;
-      rev.a.should.notEqual(rev.b);
+      rev.a.should.not.eql(rev.b);
       done();
     });
   });
