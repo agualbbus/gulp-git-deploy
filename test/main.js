@@ -64,6 +64,7 @@ describe('gulp-git-deploy', function(){
       return exec('git rev-list HEAD -1');
     })
     .then(function(stdout){
+      console.log(stdout);
       rev.a = stdout;
       return GGdeploy({
         name: 'testing-branch',
