@@ -1,6 +1,7 @@
 # gulp-git-deploy
-[![Circle CI](https://circleci.com/gh/agualbbus/gulp-git-deploy/tree/master.svg?style=shield)](https://circleci.com/gh/agualbbus/gulp-git-deploy/tree/master)
-[![npm version](https://badge.fury.io/js/gulp-git-deploy.svg)](http://badge.fury.io/js/gulp-git-deploy)
+CirlceCI:[![Circle CI](https://circleci.com/gh/agualbbus/gulp-git-deploy/tree/master.svg?style=shield)](https://circleci.com/gh/agualbbus/gulp-git-deploy/tree/master)
+DroneIO:[![Build Status](https://drone.io/github.com/agualbbus/gulp-git-deploy/status.png)](https://drone.io/github.com/agualbbus/gulp-git-deploy/latest)
+BadgeFuryIO:[![npm version](https://badge.fury.io/js/gulp-git-deploy.svg)](http://badge.fury.io/js/gulp-git-deploy)
 
 
 <table>
