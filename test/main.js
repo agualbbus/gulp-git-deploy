@@ -18,7 +18,7 @@ describe('gulp-git-deploy', function(){
     exec('git rev-parse --abbrev-ref HEAD')
     .then(function(stdout){
       currentBranch = stdout;
-      return exec('git checkout testing-branch ')
+      return exec('git checkout testing-branch ');
     })
     .then(function(stdout){
       done();
