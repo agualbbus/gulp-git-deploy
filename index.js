@@ -102,7 +102,7 @@ function gitDeploy(opt, cb){
     return merge(opt);
   })
 
-  .done(function(){
+  .then(function(){
     if( merged === true ){
       return cb();
     }

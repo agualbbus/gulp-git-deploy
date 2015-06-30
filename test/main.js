@@ -51,6 +51,29 @@ describe('gulp-git-deploy', function(){
 
 
 
+  it('should compare branch/origin with branch/local and if different should merge', function(done){
+    var rev = {};
+    exec('git reset HEAD~1 --hard')
+    then(function(){
+      return exec('git rev-list HEAD -1');
+    })
+    .then(function(stdout){
+      rev.a = stdout;
+      return GGdeploy({
+        name: 'testing-branch',
+        reset: false
+      });
+    })
+    .then(function(){
+      return exec('git rev-list HEAD -1');
+    })
+    .then(function(stdout){
+      rev.b = stdout;
+      rev.a.should.notEqual(rev.b);
+      done();
+    });
+  });
+
 
 
 
