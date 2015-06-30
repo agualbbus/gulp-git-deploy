@@ -4,7 +4,7 @@
   "description": "Run deploy tasks with gulp if there are any changes on the Git repo.",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --reporter spec --timeout 6000 test/main.js && jshint ./index.js "
+    "test": "mocha --reporter spec --timeout 30000 test/main.js && jshint ./index.js "
   },
   "repository": {
     "type": "git",
