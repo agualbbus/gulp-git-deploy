@@ -11,13 +11,17 @@ var GGdeploy = require('../');
 
 
 describe('gulp-git-deploy', function(){
-  var repo = 'https://github.com/agualbbus/gulp-git-deploy-test.git';
   var currentBranch;
 
   before(function(done){
     exec('git rev-parse --abbrev-ref HEAD')
     .then(function(stdout){
+      console.log(stdout);
       currentBranch = stdout;
+      return exec('git pull origin testing-branch');
+    })
+    .then(function(stdout){
+      console.log(stdout);
       return exec('git checkout testing-branch ');
     })
     .then(function(stdout){
