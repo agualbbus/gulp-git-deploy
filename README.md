@@ -1,5 +1,25 @@
 # gulp-git-deploy
-Run deploy tasks with gulp if there are any changes on the Git repo.
+[![Circle CI](https://circleci.com/gh/agualbbus/gulp-git-deploy/tree/master.svg?style=shield)](https://circleci.com/gh/agualbbus/gulp-git-deploy/tree/master)
+[![npm version](https://badge.fury.io/js/gulp-git-deploy.svg)](http://badge.fury.io/js/gulp-git-deploy)
+
+
+<table>
+<tr>
+<td>Package</td><td>gulp-git-deploy</td>
+</tr>
+<tr>
+<td>Description</td>
+<td>Run deploy tasks with gulp if there are any changes on the Git repo. (gulpjs.com)</td>
+</tr>
+<tr>
+<td>Node Version</td>
+<td>>= 0.9</td>
+</tr>
+<tr>
+<td>Gulp Version</td>
+<td>3.x</td>
+</tr>
+</table>
 
 ## Usage
 ### Install
