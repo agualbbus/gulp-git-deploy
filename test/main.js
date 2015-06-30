@@ -54,7 +54,8 @@ describe('gulp-git-deploy', function(){
   it('should compare branch/origin with branch/local and if different should merge', function(done){
     var rev = {};
     exec('git reset HEAD~1 --hard')
-    .then(function(){
+    .then(function(stdout){
+      console.log(stdout);
       return exec('git rev-list HEAD -1');
     })
     .then(function(stdout){
@@ -64,7 +65,8 @@ describe('gulp-git-deploy', function(){
         reset: false
       });
     })
-    .then(function(){
+    .then(function(stdout){
+      console.log(stdout);
       return exec('git rev-list HEAD -1');
     })
     .then(function(stdout){
@@ -79,10 +81,12 @@ describe('gulp-git-deploy', function(){
 
   after(function(done){
     exec('git reset --hard')
-    .then(function(){
+    .then(function(stdout){
+      console.log(stdout);
       return exec('git checkout '+ currentBranch)
     })
-    .then(function(){
+    .then(function(stdout){
+      console.log(stdout);
       done();
     });
   });
