@@ -84,7 +84,7 @@ describe('gulp-git-deploy', function(){
     var cbText = 'I´m a callback';
     var cb ={
       result: null,
-      func : function(){return  cbText};
+      func : function(){return  cbText}
     };
 
 
